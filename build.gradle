@@ -14,10 +14,12 @@ repositories {
 	jcenter()
 }
 
+version = '6.9.12'
+
 defaultTasks 'clean', 'updateSiteZip'
 
 platform {
-	bundle 'org.testng:testng:6.9.12'
+	bundle "org.testng:testng:${version}"
 	featureId 'org.testng.p2.feature'
 	featureName 'TestNG Feature'
 	categoryName 'TestNG Libraries'
