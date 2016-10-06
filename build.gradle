@@ -19,9 +19,15 @@ version = '6.9.12'
 defaultTasks 'clean', 'updateSiteZip'
 
 platform {
-	bundle "org.testng:testng:${version}"
+	feature(id: 'org.testng.p2.feature', name: 'TestNG Feature') {
+		plugin "org.testng:testng:${version}", {
+			exclude module: 'ant'
+		}
+	}
+
 	featureId 'org.testng.p2.feature'
 	featureName 'TestNG Feature'
+
 	categoryName 'TestNG Libraries'
 	categoryId 'org.testng.p2.libraries'
 }
