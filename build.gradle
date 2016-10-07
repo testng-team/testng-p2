@@ -3,7 +3,7 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath 'org.standardout:bnd-platform:1.3.0'
+		classpath 'org.standardout:bnd-platform:1.4.0'
 	}
 }
 
@@ -12,17 +12,28 @@ apply plugin: 'org.standardout.bnd-platform'
 repositories {
 	mavenCentral()
 	jcenter()
-	
 }
+
+// project version is also platform feature version default,
+// here uses TestNG version as project version.
+version = '6.9.12'
 
 defaultTasks 'clean', 'updateSiteZip'
 
 platform {
-	bundle 'org.testng:testng:6.9.12'
+	feature(id: 'org.testng.p2.feature', name: 'TestNG Feature') {
+		plugin "org.testng:testng:${version}", {
+			exclude module: 'ant'
+		}
+	}
+
+	featureId 'org.testng.p2.feature'
+	featureName 'TestNG Feature'
+
 	categoryName 'TestNG Libraries'
 	categoryId 'org.testng.p2.libraries'
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.10'
+	gradleVersion = '3.1'
 }
