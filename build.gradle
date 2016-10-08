@@ -12,11 +12,14 @@ apply plugin: 'org.standardout.bnd-platform'
 repositories {
 	mavenCentral()
 	jcenter()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
 }
 
 // project version is also platform feature version default,
 // here uses TestNG version as project version.
-version = '6.9.12'
+version = '6.9.13-SNAPSHOT'
 
 defaultTasks 'clean', 'updateSiteZip'
 
