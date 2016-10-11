@@ -25,10 +25,10 @@ defaultTasks 'clean', 'updateSiteZip'
 
 platform {
 	feature(id: 'org.testng.p2.feature', name: 'TestNG Feature') {
-	    bnd {
-            optionalImport 'com.google.common.*'
-        }
 		plugin "org.testng:testng:${version}", {
+		    bnd {
+            	optionalImport 'com.google.common.*'
+        	}
 			exclude module: 'ant'
 		}
 	}
