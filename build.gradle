@@ -25,6 +25,9 @@ defaultTasks 'clean', 'updateSiteZip'
 
 platform {
 	feature(id: 'org.testng.p2.feature', name: 'TestNG Feature') {
+	    bnd {
+            optionalImport 'com.google.common.*'
+        }
 		plugin "org.testng:testng:${version}", {
 			exclude module: 'ant'
 		}
@@ -35,6 +38,9 @@ platform {
 
 	categoryName 'TestNG Libraries'
 	categoryId 'org.testng.p2.libraries'
+	
+	useBndHashQualifiers false
+    defaultQualifier ''
 }
 
 task wrapper(type: Wrapper) {
