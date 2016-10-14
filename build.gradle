@@ -7,6 +7,12 @@ buildscript {
 	}
 }
 
+def buildTime() {
+       def df = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
+       df.setTimeZone(TimeZone.getTimeZone("UTC"))
+       return df.format(new Date())
+}
+
 apply plugin: 'org.standardout.bnd-platform'
 
 repositories {
@@ -20,6 +26,8 @@ repositories {
 // project version is also platform feature version default,
 // here uses TestNG version as project version.
 version = '6.9.13-SNAPSHOT'
+
+def versionWithQualifier = version.replaceAll('SNAPSHOT', buildTime())
 
 defaultTasks 'clean', 'updateSiteZip'
 
@@ -41,6 +49,10 @@ platform {
 	
 	useBndHashQualifiers false
     defaultQualifier ''
+    
+    bnd(group: 'org.testng', name: 'testng', version: "${version}") {
+		version = versionWithQualifier
+	}
 }
 
 task wrapper(type: Wrapper) {
