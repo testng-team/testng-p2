@@ -27,7 +27,7 @@ repositories {
 // here uses TestNG version as project version.
 version = '6.9.13-SNAPSHOT'
 
-def versionWithQualifier = version.replaceAll('SNAPSHOT', buildTime())
+def versionWithQualifier = version.replaceAll('-SNAPSHOT', "." + buildTime())
 
 defaultTasks 'clean', 'updateSiteZip'
 
@@ -43,6 +43,7 @@ platform {
 
 	featureId 'org.testng.p2.feature'
 	featureName 'TestNG Feature'
+	featureVersion versionWithQualifier
 
 	categoryName 'TestNG Libraries'
 	categoryId 'org.testng.p2.libraries'
