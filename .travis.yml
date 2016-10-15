@@ -1,0 +1,11 @@
+sudo: false
+language: java
+cache:
+  directories:
+  - $HOME/.gradle
+
+jdk:
+  - oraclejdk7
+
+script:
+  - ./gradlew
