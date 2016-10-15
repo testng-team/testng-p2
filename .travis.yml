@@ -13,4 +13,4 @@ jdk:
 install: echo "skip 'gradle assemble' step"
 
 script:
-  - ./gradlew --continue
+  - ./gradlew --continue --stacktrace --debug
