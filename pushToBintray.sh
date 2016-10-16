@@ -25,7 +25,6 @@ COMPOSITE_PCK_NAME=composite
 echo "BINTRAY_USER=${BINTRAY_USER}"
 echo "BINTRAY_OWNER=${BINTRAY_OWNER}"
 echo "BINTRAY_REPO=${BINTRAY_REPO}"
-# echo "PCK_NAME=${PCK_NAME}"
 echo "PCK_VERSION=${PCK_VERSION}"
 echo "PATH_TO_REPOSITORY=${PATH_TO_REPOSITORY}"
 
@@ -33,6 +32,7 @@ echo "PATH_TO_REPOSITORY=${PATH_TO_REPOSITORY}"
 function main() {
 deploy_updatesite
 deploy_zipped_updatesite
+deploy_composite_updatesite
 }
 
 function deploy_updatesite() {
@@ -94,5 +94,68 @@ curl -v -X PUT -T $f -u ${BINTRAY_USER}:${BINTRAY_API_KEY} "${BINTRAY_API_URL}/c
 cd $curr
 }
 
+check_url_status() {
+  local url=$1
+  local curl_cmd="curl --silent --insecure --connect-timeout 10 --max-time 30 --head"
+  curl_cmd="$curl_cmd $url | grep \"HTTP/1.[01]\" | tail -n 1"
+  local result=$(eval $curl_cmd)
+  eval status=($result)
+  echo ${status[1]}
+}
+
+function deploy_composite_updatesite() {
+local curr=`pwd`
+if [ ! -z "$PATH_TO_REPOSITORY" ]; then
+   cd $PATH_TO_REPOSITORY
+fi
+
+echo "Processing composite updatesite"
+local PCK_NAME=$COMPOSITE_PCK_NAME
+
+# download the metadata if exists
+local compositeFile=compositeContent.xml
+local compositeContentUrl="https://dl.bintray.com/${BINTRAY_OWNER}/${BINTRAY_REPO}/${PCK_NAME}/compositeContent.xml"
+if [[ "200" = $(check_url_status $compositeContentUrl) ]]; then
+curl -O $compositeContentUrl
+else
+cat > $compositeFile << EOF
+<?compositeMetadataRepository version='1.0.0'?>
+<repository name='TestNG Composite P2 Repo' type='org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository' version='1.0.0'>
+<properties size='2'>
+<property name='p2.timestamp' value='1454086165279'/>
+<property name='p2.atomic.composite.loading' value='true'/>
+</properties>
+<children size='3'>
+</children>
+</repository>
+EOF
+fi
+
+echo "adding child repo to $compositeFile"
+
+local content=$(sed "/<children size=.*>/a\ 
+<child location='../${DISTS_PCK_NAME}/${PCK_VERSION}'/>\ 
+
+" $compositeFile)
+
+echo "$content" > $compositeFile
+
+cat $compositeFile
+
+echo "uploading composite metadata file"
+local BINTRAY_TARGET_PATH=${PCK_NAME}
+
+curl -v -X PUT -T $compositeFile -u ${BINTRAY_USER}:${BINTRAY_API_KEY} "${BINTRAY_API_URL}/content/${BINTRAY_OWNER}/${BINTRAY_REPO}/${BINTRAY_TARGET_PATH}/compositeContent.xml;bt_package=${PCK_NAME};bt_version=${PCK_VERSION};publish=1"
+curl -v -X PUT -T $compositeFile -u ${BINTRAY_USER}:${BINTRAY_API_KEY} "${BINTRAY_API_URL}/content/${BINTRAY_OWNER}/${BINTRAY_REPO}/${BINTRAY_TARGET_PATH}/compositeArtifacts.xml;bt_package=${PCK_NAME};bt_version=${PCK_VERSION};publish=1"
+
+cd $curr
+}
+
+function delete_composite_files() {
+local PCK_NAME=$COMPOSITE_PCK_NAME
+local BINTRAY_TARGET_PATH=${PCK_NAME}
+curl -v -X DELETE -u ${BINTRAY_USER}:${BINTRAY_API_KEY} "${BINTRAY_API_URL}/content/${BINTRAY_OWNER}/${BINTRAY_REPO}/${BINTRAY_TARGET_PATH}/compositeContent.xml;bt_package=${PCK_NAME};bt_version=${PCK_VERSION};publish=1"
+curl -v -X DELETE -u ${BINTRAY_USER}:${BINTRAY_API_KEY} "${BINTRAY_API_URL}/content/${BINTRAY_OWNER}/${BINTRAY_REPO}/${BINTRAY_TARGET_PATH}/compositeArtifacts.xml;bt_package=${PCK_NAME};bt_version=${PCK_VERSION};publish=1"
+}
 
 main "$@"
