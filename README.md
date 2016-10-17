@@ -8,3 +8,4 @@ the project to generate P2 repo for TestNG
 ## Contributors (alphabetical)
 
 * Nick Tan <missedone@gmail.com>
+* Martin Schreiber <martin@mschreiber.at>
