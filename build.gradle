@@ -78,18 +78,21 @@ task pushToBintray(type: Exec) {
 	def pathToRepo = project.buildDir
 
 	def pckVersion = versionWithQualifier
-	// since 'pushToBintray' is running in separate JVM process on travis-ci, 
-	// hence need to get the package version by parsing the generated file name
-	def featureFiles = new FileNameFinder().getFileNames("${pathToRepo}/features/", 'org.testng.p2.feature_*.jar')
-	featureFiles.each {
-		def s = new File(it).getName()
-		s = s.substring('org.testng.p2.feature_'.length())
-		s = s.substring(0, s.length() - '.jar'.length())
-		def idx = s.indexOf('-')
-		if (idx > 0) {
-			s = s.substring(0, idx)
+
+	if (new File("${pathToRepo}/features/").exists()) {
+		// since 'pushToBintray' is running in separate JVM process on travis-ci, 
+		// hence need to get the package version by parsing the generated file name
+		def featureFiles = new FileNameFinder().getFileNames("${pathToRepo}/features/", 'org.testng.p2.feature_*.jar')
+		featureFiles.each {
+			def s = new File(it).getName()
+			s = s.substring('org.testng.p2.feature_'.length())
+			s = s.substring(0, s.length() - '.jar'.length())
+			def idx = s.indexOf('-')
+			if (idx > 0) {
+				s = s.substring(0, idx)
+			}
+			pckVersion = s
 		}
-		pckVersion = s
 	}
 
 	// assert bintrayUser != null:
