@@ -8,9 +8,9 @@ buildscript {
 }
 
 def buildTime() {
-       def df = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
-       df.setTimeZone(TimeZone.getTimeZone("UTC"))
-       return df.format(new Date())
+	def df = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
+	df.setTimeZone(TimeZone.getTimeZone("UTC"))
+	return df.format(new Date())
 }
 
 apply plugin: 'org.standardout.bnd-platform'
@@ -47,13 +47,35 @@ platform {
 
 	categoryName 'TestNG Libraries'
 	categoryId 'org.testng.p2.libraries'
-	
+
 	useBndHashQualifiers false
     defaultQualifier ''
-    
+
     bnd(group: 'org.testng', name: 'testng', version: "${version}") {
 		version = versionWithQualifier
 	}
+}
+
+clean {
+	delete "${buildDir}/compositeContent.xml"
+}
+
+task pushToBintray(type: Exec, dependsOn: updateSiteZip) {
+	def bintrayUser = hasProperty('BINTRAY_USER') ? getProperty('BINTRAY_USER') : System.getProperty('BINTRAY_USER')
+    def bintrayApiKey = hasProperty('BINTRAY_API_KEY') ? getProperty('BINTRAY_API_KEY') : System.getProperty('BINTRAY_API_KEY')
+	def bintrayOwner = 'testng-team'
+	def bintrayRepo = 'testng-p2-playground'
+	def pckVersion = versionWithQualifier
+	def pathToRepo = project.buildDir
+
+	// assert bintrayUser != null:
+	// 	'''bintray user must not be null'''
+	// assert bintrayApiKey != null:
+	// 	'''bintray api key must not be null'''
+	// assert pckVersion != null:
+	// 	'''package version must not be null'''
+
+	commandLine 'sh', '-c', "./pushToBintray.sh ${bintrayUser}  ${bintrayApiKey} ${bintrayOwner} ${bintrayRepo} ${pckVersion} ${pathToRepo}"
 }
 
 task wrapper(type: Wrapper) {
