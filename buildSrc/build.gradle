@@ -1,0 +1,10 @@
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.2'
+    compile('org.codehaus.groovy.modules.http-builder:http-builder:0.7.2') {
+        exclude(module: 'groovy')
+    }
+}
