@@ -73,6 +73,9 @@ task pushToBintray(type: Exec) {
 	def bintrayRepo = hasProperty('BINTRAY_REPO') ? getProperty('BINTRAY_REPO') : System.getProperty('BINTRAY_REPO')
 	if (bintrayRepo == null) {
 		bintrayRepo = 'testng-p2-beta'
+		if (hasProperty('RELEASE')) {
+			bintrayRepo = 'testng-p2'
+		}
 	}
 
 	def pathToRepo = project.buildDir
