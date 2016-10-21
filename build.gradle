@@ -39,28 +39,24 @@ defaultTasks 'updateSiteZip'
 updateSiteZip.dependsOn clean
 
 platform {
-	feature(id: 'org.testng.p2.feature', name: 'TestNG Feature') {
-		plugin "org.testng:testng:${version}", {
-		    bnd {
-            	optionalImport 'com.google.common.*'
-        	}
-			exclude module: 'ant'
-		}
-	}
+    bundle "org.testng:testng:${version}", {
+        bnd {
+            optionalImport 'com.google.common.*'
+            version = versionWithQualifier
+        }
+        exclude module: 'ant'
+    }
 
-	featureId 'org.testng.p2.feature'
-	featureName 'TestNG Feature'
-	featureVersion versionWithQualifier
+    featureId 'org.testng.p2.feature'
+    featureName 'TestNG Feature'
+    featureVersion versionWithQualifier
 
-	categoryName 'TestNG Libraries'
-	categoryId 'org.testng.p2.libraries'
+    categoryName 'TestNG Libraries'
+    categoryId 'org.testng.p2.libraries'
 
-	useBndHashQualifiers false
+    useBndHashQualifiers false
+    useFeatureHashQualifiers false
     defaultQualifier ''
-
-    bnd(group: 'org.testng', name: 'testng', version: "${version}") {
-		version = versionWithQualifier
-	}
 }
 
 clean {
