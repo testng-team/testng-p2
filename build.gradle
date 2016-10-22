@@ -39,9 +39,14 @@ defaultTasks 'updateSiteZip'
 updateSiteZip.dependsOn clean
 
 platform {
+    override {
+        optionalImport 'javax.*'
+    }
     bundle "org.testng:testng:${version}", {
         bnd {
             optionalImport 'com.google.common.*'
+            optionalImport 'org.w3c.*'
+            optionalImport 'org.xml.*'
             version = versionWithQualifier
         }
         exclude module: 'ant'
@@ -51,10 +56,10 @@ platform {
     }
 
     featureId 'org.testng.p2.feature'
-    featureName 'TestNG Feature'
+    featureName 'TestNG P2 Feature'
     featureVersion versionWithQualifier
 
-    categoryName 'TestNG Libraries'
+    categoryName 'TestNG P2 Libraries'
     categoryId 'org.testng.p2.libraries'
 
     useBndHashQualifiers false
