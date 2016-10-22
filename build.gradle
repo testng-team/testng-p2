@@ -46,6 +46,9 @@ platform {
         }
         exclude module: 'ant'
     }
+    bnd (name: 'bsh') {
+        optionalImport 'org.apache.bsf.*'
+    }
 
     featureId 'org.testng.p2.feature'
     featureName 'TestNG Feature'
