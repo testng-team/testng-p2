@@ -1,5 +1,6 @@
 buildscript {
 	repositories {
+        mavenLocal()
         jcenter()
         maven {
             url 'https://dl.bintray.com/missedone/gradle-plugins/'
@@ -12,7 +13,7 @@ buildscript {
         classpath 'de.undercouch:gradle-download-task:3.1.1'
         classpath 'org.apache.httpcomponents:httpclient:4.5.2'
 
-        classpath 'com.github.missedone:gradle-bintray-p2-plugin:1.0.0'
+        classpath 'com.github.missedone:gradle-bintray-p2-plugin:1.0.1'
 	}
 }
 
@@ -70,10 +71,6 @@ platform {
     useBndHashQualifiers false
     useFeatureHashQualifiers false
     defaultQualifier ''
-}
-
-clean {
-	delete "${buildDir}/compositeContent.xml"
 }
 
 publishP2Repo {
