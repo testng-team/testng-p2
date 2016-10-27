@@ -5,6 +5,7 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+    - $HOME/.bnd-eclipse/
 sudo: false
 language: java
 jdk:

@@ -4,7 +4,7 @@ buildscript {
         jcenter()
 	}
 	dependencies {
-		classpath 'org.standardout:bnd-platform:1.4.0'
+		classpath 'org.standardout:bnd-platform:1.5.0'
 
         // see https://github.com/michel-kraemer/gradle-download-task/issues/56
         classpath 'de.undercouch:gradle-download-task:3.1.1'
@@ -61,6 +61,7 @@ platform {
     featureId 'org.testng.p2.feature'
     featureName 'TestNG P2 Feature'
     featureVersion versionWithQualifier
+    featureProvider 'TestNG Team'
 
     categoryName 'TestNG P2 Libraries'
     categoryId 'org.testng.p2.libraries'
@@ -68,6 +69,10 @@ platform {
     useBndHashQualifiers false
     useFeatureHashQualifiers false
     defaultQualifier ''
+
+    downloadsDir = new File(System.properties['user.home'], '.bnd-eclipse')
+    eclipseMirror.linux.gtk.x86_64 = 'http://download.eclipse.org/eclipse/downloads/drops4/R-4.5.2-201602121500/eclipse-platform-4.5.2-linux-gtk-x86_64.tar.gz'
+    eclipseMirror.macosx.cocoa.x86_64 = 'http://download.eclipse.org/eclipse/downloads/drops4/R-4.5.2-201602121500/eclipse-platform-4.5.2-macosx-cocoa-x86_64.tar.gz'
 }
 
 publishP2Repo {
