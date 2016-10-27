@@ -14,6 +14,6 @@ jdk:
 install: echo "skip 'gradle assemble' step"
 
 script:
-  - ./gradlew --continue --stacktrace --debug
+  - ./gradlew --continue --stacktrace
 
 after_success: test "${TRAVIS_PULL_REQUEST}" == "false" && test ${TRAVIS_BRANCH} == "master" && ./gradlew publishP2Repo --stacktrace
