@@ -28,9 +28,19 @@ repositories {
 
 // project version is also platform feature version default,
 // here uses TestNG version as project version.
-version = '6.9.13-SNAPSHOT'
+version = '6.10'
 
-def versionWithQualifier = version.replaceAll('-SNAPSHOT', "." + buildTime())
+def releaseMode
+def versionWithQualifier
+
+if (version ==~ /^\d+[\.\d+]+$/) {
+    releaseMode = 'release'
+    versionWithQualifier = version + '.rel'
+}
+else {
+    releaseMode = 'beta'
+    versionWithQualifier = version.replaceAll('-SNAPSHOT', "." + buildTime())
+}
 
 defaultTasks 'updateSiteZip'
 
@@ -72,7 +82,8 @@ platform {
 
 publishP2Repo {
 	repoOwner = 'testng-team'
-	repoName = 'testng-p2-beta'
+    repoName = releaseMode == 'release' ? 'testng-p2' : 'testng-p2-beta'
+    compositePackage = ''
 }
 
 task wrapper(type: Wrapper) {
