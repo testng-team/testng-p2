@@ -76,7 +76,7 @@ platform {
     defaultQualifier ''
 
     downloadsDir = new File(System.properties['user.home'], '.bnd-eclipse')
-    eclipseMirror.linux.gtk.x86_64 = 'http://download.eclipse.org/eclipse/downloads/drops4/R-4.5.2-201602121500/eclipse-platform-4.5.2-linux-gtk-x86_64.tar.gz'
+    eclipseMirror.linux.gtk.x86_64 = 'http://download.eclipse.org/eclipse/downloads/drops4/R-4.6.3-201703010400/eclipse-platform-4.6.3-linux-gtk-x86_64.tar.gz'
     eclipseMirror.macosx.cocoa.x86_64 = 'http://download.eclipse.org/eclipse/downloads/drops4/R-4.5.2-201602121500/eclipse-platform-4.5.2-macosx-cocoa-x86_64.tar.gz'
 }
 
