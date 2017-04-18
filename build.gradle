@@ -87,6 +87,7 @@ publishP2Repo {
 	repoOwner = 'testng-team'
     repoName = releaseMode == 'release' ? 'testng-p2' : 'testng-p2-beta'
     compositePackage = ''
+    subCompositeStrategy = 'MICRO'
 }
 
 task wrapper(type: Wrapper) {
