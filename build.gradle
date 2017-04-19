@@ -31,7 +31,7 @@ repositories {
 
 // project version is also platform feature version default,
 // here uses TestNG version as project version.
-version = '6.11'
+version = '6.11.1-SNAPSHOT'
 
 def releaseMode
 def versionWithQualifier
