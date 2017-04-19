@@ -31,7 +31,7 @@ repositories {
 
 // project version is also platform feature version default,
 // here uses TestNG version as project version.
-version = '6.9.12'
+version = '6.10'
 
 def releaseMode
 def versionWithQualifier
@@ -73,7 +73,7 @@ platform {
         exclude module: 'bsh'
     }
 
-    bundle "org.yaml:snakeyaml:1.15"
+    bundle "org.yaml:snakeyaml:1.17"
 
     bundle "org.apache-extras.beanshell:bsh:2.0b6", {
         bnd {
