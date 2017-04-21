@@ -71,6 +71,7 @@ platform {
                                             '!com.beust.testng,' +
                                             '!org.testng.*,' +
                                             '!com.sun.*'
+            instruction 'Require-Bundle', 'com.beust.jcommander;bundle-version="[1.7.0,2.0.0)";visibility:=reexport'
             instruction 'Bundle-Vendor', 'TestNG Team'
             version = versionWithQualifier
         }
