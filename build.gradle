@@ -33,16 +33,20 @@ repositories {
 // here uses TestNG version as project version.
 version = '6.11.1-SNAPSHOT'
 
-def releaseMode
+def buildMode = System.getProperty('BUILD_MODE')
 def versionWithQualifier
 
+def qualifierPrefix = 'b'       // 'b' for Beta
+if (buildMode == "release") {
+    assert !version.endsWith('-SNAPSHOT') : "Please don't use snapshot version ${version} for release"
+    qualifierPrefix = 'r'       // 'r' for Release
+}
+
 if (version ==~ /^\d+[\.\d+]+$/) {
-    releaseMode = 'release'
-    versionWithQualifier = version + '.rel'
+    versionWithQualifier = version + "." + qualifierPrefix + buildTime()
 }
 else {
-    releaseMode = 'beta'
-    versionWithQualifier = version.replaceAll('-SNAPSHOT', "." + buildTime())
+    versionWithQualifier = version.replaceAll('-SNAPSHOT', "." + qualifierPrefix + buildTime())
 }
 
 defaultTasks 'updateSiteZip'
@@ -101,7 +105,7 @@ platform {
 
 publishP2Repo {
 	repoOwner = 'testng-team'
-    repoName = releaseMode == 'release' ? 'testng-p2' : 'testng-p2-beta'
+    repoName = buildMode == 'release' ? 'testng-p2-release' : 'testng-p2'
     compositePackage = ''
     subCompositeStrategy = 'MICRO'
 }
