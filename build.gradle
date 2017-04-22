@@ -13,7 +13,7 @@ buildscript {
 }
 
 def buildTime() {
-	def df = new java.text.SimpleDateFormat("yyyyMMddHHmmss")
+	def df = new java.text.SimpleDateFormat("yyyyMMddHHmm")
 	df.setTimeZone(TimeZone.getTimeZone("UTC"))
 	return df.format(new Date())
 }
