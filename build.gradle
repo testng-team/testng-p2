@@ -54,9 +54,6 @@ defaultTasks 'updateSiteZip'
 updateSiteZip.dependsOn clean
 
 platform {
-    override {
-        optionalImport 'javax.*'
-    }
     bundle "org.testng:testng:${version}", {
         bnd {
             // instruction 'Export-Package', "org.testng.*;version=$version"
