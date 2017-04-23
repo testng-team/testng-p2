@@ -8,7 +8,7 @@ buildscript {
 	}
 	dependencies {
 		classpath 'org.standardout:bnd-platform:1.6.0-SNAPSHOT'
-        classpath 'com.github.missedone:gradle-bintray-p2-plugin:1.1.0'
+        classpath 'com.github.missedone:gradle-bintray-p2-plugin:1.2.0'
 	}
 }
 
@@ -104,6 +104,7 @@ platform {
 publishP2Repo {
 	repoOwner = 'testng-team'
     repoName = buildMode == 'release' ? 'testng-p2-release' : 'testng-p2'
+    mainFeatureId = 'org.testng.p2.feature'
     compositePackage = ''
     subCompositeStrategy = 'MICRO'
 }
