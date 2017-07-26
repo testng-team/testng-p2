@@ -56,6 +56,10 @@ updateSiteZip.dependsOn clean
 platform {
     bundle "org.testng:testng:${version}", {
         bnd {
+            // override/set the symbolic name
+            symbolicName = 'org.testng'
+            // override/set the bundle name
+            bundleName = 'testng'
             // instruction 'Export-Package', "org.testng.*;version=$version"
             instruction 'Import-Package', 
                                             'com.beust.jcommander.*;version="[1.7.0,2.0.0)",' + 
