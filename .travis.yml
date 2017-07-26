@@ -16,4 +16,4 @@ install: echo "skip 'gradle assemble' step"
 script:
   - ./gradlew --continue --stacktrace
 
-after_success: test "${TRAVIS_PULL_REQUEST}" == "false" && test ${TRAVIS_BRANCH} == "master" && ./gradlew publishP2Repo
+after_success: if [[ ( "${TRAVIS_PULL_REQUEST}" == "false" ) && ( ${TRAVIS_BRANCH} == "master" ) ]]; then ./gradlew publishP2Repo; fi
