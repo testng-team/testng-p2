@@ -90,6 +90,15 @@ platform {
         }
     }
 
+    bundle "com.beust:jcommander:1.72", {
+        bnd {
+            // override/set the symbolic name
+            symbolicName = 'com.beust.jcommander'
+            // override/set the bundle name
+            bundleName = 'jcommander'
+        }
+    }
+
     featureId 'org.testng.p2.feature'
     featureName 'TestNG P2 Feature'
     featureVersion versionWithQualifier
