@@ -31,7 +31,7 @@ repositories {
 
 // project version is also platform feature version default,
 // here uses TestNG version as project version.
-version = '6.15.0-SNAPSHOT'
+version = '7.0.0-SNAPSHOT'
 
 def buildMode = System.getProperty('BUILD_MODE')
 def versionWithQualifier
@@ -112,9 +112,6 @@ platform {
     defaultQualifier ''
 
     downloadsDir = new File(System.properties['user.home'], '.bnd-eclipse')
-    // see all archive eclipse downloads: http://archive.eclipse.org/eclipse/downloads/
-    eclipseMirror.linux.gtk.x86_64 = 'http://archive.eclipse.org/eclipse/downloads/drops4/R-4.6.3-201703010400/eclipse-platform-4.6.3-linux-gtk-x86_64.tar.gz'
-    eclipseMirror.macosx.cocoa.x86_64 = 'http://archive.eclipse.org/eclipse/downloads/drops4/R-4.6.3-201703010400/eclipse-platform-4.6.3-macosx-cocoa-x86_64.tar.gz'
 }
 
 publishP2Repo {
