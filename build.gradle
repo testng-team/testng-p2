@@ -46,7 +46,7 @@ if (version ==~ /^\d+[\.\d+]+$/) {
     versionWithQualifier = version + "." + qualifierPrefix + buildTime()
 }
 else {
-    versionWithQualifier = version.replaceAll('-SNAPSHOT', "." + qualifierPrefix + buildTime())
+    versionWithQualifier = version.substring(0, version.indexOf('-')) + "." + qualifierPrefix + buildTime()
 }
 
 defaultTasks 'updateSiteZip'
