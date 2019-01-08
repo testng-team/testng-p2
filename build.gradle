@@ -31,7 +31,7 @@ repositories {
 
 // project version is also platform feature version default,
 // here uses TestNG version as project version.
-version = '7.0.0-beta2'
+version = '7.0.0-beta3'
 
 def buildMode = System.getProperty('BUILD_MODE')
 def versionWithQualifier
