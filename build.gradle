@@ -31,7 +31,7 @@ repositories {
 
 // project version is also platform feature version default,
 // here uses TestNG version as project version.
-version = '7.0.0-beta3'
+version = '7.0.0'
 
 def buildMode = System.getProperty('BUILD_MODE')
 def versionWithQualifier
@@ -83,7 +83,7 @@ platform {
         exclude module: 'guice'
     }
 
-    bundle "org.yaml:snakeyaml:1.17"
+    bundle "org.yaml:snakeyaml:1.21"
 
     bundle "org.apache-extras.beanshell:bsh:2.0b6", {
         bnd {

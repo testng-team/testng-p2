@@ -9,7 +9,7 @@ cache:
 sudo: false
 language: java
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 install: echo "skip 'gradle assemble' step"
 
