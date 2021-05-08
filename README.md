@@ -9,8 +9,9 @@ The project to generate P2 repo for OSGified TestNG.
 
 The project is understand Beta phase.
 
-The beta P2 update site is ready for public review: https://dl.bintray.com/testng-team/testng-p2/
+The P2 update site is ready for public review: https://testng.org/testng-p2-update-site
 Please raise bug or discussion [here](https://github.com/testng-team/testng-p2/issues).
+The raw files of P2 update site is available at https://github.com/testng-team/testng-p2-update-site
 
 ## Contributors (alphabetical)
 
