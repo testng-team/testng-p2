@@ -8,7 +8,6 @@ buildscript {
 	}
 	dependencies {
 		classpath 'org.standardout:bnd-platform:1.7.0'
-        classpath 'com.github.missedone:gradle-bintray-p2-plugin:1.2.0'
 	}
 }
 
@@ -19,7 +18,6 @@ def buildTime() {
 }
 
 apply plugin: 'org.standardout.bnd-platform'
-apply plugin: 'bintray-p2'
 
 repositories {
 	mavenCentral()
@@ -113,14 +111,6 @@ platform {
     defaultQualifier ''
 
     downloadsDir = new File(System.properties['user.home'], '.bnd-eclipse')
-}
-
-publishP2Repo {
-	repoOwner = 'testng-team'
-    repoName = buildMode == 'release' ? 'testng-p2-release' : 'testng-p2'
-    mainFeatureId = 'org.testng.p2.feature'
-    compositePackage = ''
-    subCompositeStrategy = 'MICRO'
 }
 
 task wrapper(type: Wrapper) {
