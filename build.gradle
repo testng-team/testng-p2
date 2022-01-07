@@ -111,6 +111,7 @@ platform {
     defaultQualifier ''
 
     downloadsDir = new File(System.properties['user.home'], '.bnd-eclipse')
+    eclipseMirror = 'http://philippkatz.de/eclipse-p2-minimal.tar.gz'
 }
 
 task wrapper(type: Wrapper) {
