@@ -18,15 +18,7 @@ jobs:
         distribution: adopt
         java-version: 8
 
-    - uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
-
     - name: Build
-      run: |
-        ./gradlew --continue --stacktrace
+      uses: gradle/gradle-build-action@v2
+      with:
+        arguments: "--continue --stacktrace"
