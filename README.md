@@ -5,15 +5,11 @@ TestNG P2
 
 The project to generate P2 repo for OSGified TestNG.
 
-## Project Status
-
-The project is understand Beta phase.
-
-The P2 update site is ready for public review: https://testng.org/testng-p2-update-site
+The P2 update site is available at: https://testng.org/testng-p2-update-site
 Please raise bug or discussion [here](https://github.com/testng-team/testng-p2/issues).
 The raw files of P2 update site is available at https://github.com/testng-team/testng-p2-update-site
 
-## Contributors (alphabetical)
+## Contributors
 
 * Nick Tan <missedone@gmail.com>
 * Martin Schreiber <martin@mschreiber.at>
