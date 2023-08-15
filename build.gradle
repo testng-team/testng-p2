@@ -92,7 +92,7 @@ platform {
         }
     }
 
-    bundle "com.beust:jcommander:1.72", {
+    bundle "com.beust:jcommander:1.82", {
         bnd {
             // override/set the symbolic name
             symbolicName = 'com.beust.jcommander'
