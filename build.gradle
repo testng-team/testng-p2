@@ -83,7 +83,7 @@ platform {
         exclude module: 'guice'
     }
 
-    bundle "org.yaml:snakeyaml:1.21"
+    bundle "org.yaml:snakeyaml:2.2"
     bundle "org.slf4j:slf4j-api:1.7.36"
 
     bundle "org.apache-extras.beanshell:bsh:2.0b6", {
