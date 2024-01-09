@@ -84,7 +84,7 @@ platform {
     }
 
     bundle "org.yaml:snakeyaml:1.21"
-    bundle "org.slf4j:slf4j-api:1.7.36"
+    bundle "org.slf4j:slf4j-api:2.0.11"
 
     bundle "org.apache-extras.beanshell:bsh:2.0b6", {
         bnd {
