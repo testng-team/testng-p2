@@ -61,7 +61,7 @@ platform {
             bundleName = 'testng'
             // instruction 'Export-Package', "org.testng.*;version=$version"
             instruction 'Import-Package', 
-                                            'com.beust.jcommander.*;version="[1.7.0,2.0.0)",' + 
+                                            'com.beust.jcommander.*;version="[1.8.3,2.0.0)",' + 
                                             'org.slf4j.*,' + 
                                             'bsh.*;version="[2.0.0,3.0.0)";resolution:=optional,' +
                                             'com.google.inject.*;version="[1.2,5.0)";resolution:=optional,' +
@@ -72,7 +72,7 @@ platform {
                                             '!com.beust.testng,' +
                                             '!org.testng.*,' +
                                             '!com.sun.*'
-            instruction 'Require-Bundle', 'com.beust.jcommander;bundle-version="[1.7.0,2.0.0)";visibility:=reexport'
+            instruction 'Require-Bundle', 'com.beust.jcommander;bundle-version="[1.8.3,2.0.0)";visibility:=reexport'
             instruction 'Bundle-Vendor', 'TestNG Team'
             version = versionWithQualifier
         }
@@ -92,7 +92,7 @@ platform {
         }
     }
 
-    bundle "com.beust:jcommander:1.72", {
+    bundle "org.jcommander:jcommander:1.83", {
         bnd {
             // override/set the symbolic name
             symbolicName = 'com.beust.jcommander'
