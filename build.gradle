@@ -64,11 +64,11 @@ platform {
                                             'com.beust.jcommander.*;version="[1.8.3,2.0.0)",' + 
                                             'org.slf4j.*,' + 
                                             'bsh.*;version="[2.0.0,3.0.0)";resolution:=optional,' +
-                                            'com.google.inject.*;version="[1.2,5.0)";resolution:=optional,' +
+                                            'com.google.inject.*;version="5.0";resolution:=optional,' +
                                             'junit.framework;version="[3.8.1, 5.0.0)";resolution:=optional,' +
                                             'org.junit.*;resolution:=optional,' +
                                             'org.apache.tools.ant.*;version="[1.7.0, 2.0.0)";resolution:=optional,' +
-                                            'org.yaml.*;version="[1.6,2.0)";resolution:=optional,' +
+                                            'org.yaml.*;version="[2.0,3.0)";resolution:=optional,' +
                                             '!com.beust.testng,' +
                                             '!org.testng.*,' +
                                             '!com.sun.*'
@@ -83,8 +83,8 @@ platform {
         exclude module: 'guice'
     }
 
-    bundle "org.yaml:snakeyaml:1.21"
-    bundle "org.slf4j:slf4j-api:1.7.36"
+    bundle "org.yaml:snakeyaml:2.2"
+    bundle "org.slf4j:slf4j-api:2.0.16"
 
     bundle "org.apache-extras.beanshell:bsh:2.0b6", {
         bnd {
