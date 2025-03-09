@@ -30,7 +30,7 @@ repositories {
 
 // project version is also platform feature version default,
 // here uses TestNG version as project version.
-version = '7.11.0'
+version = '7.12.0-SNAPSHOT'
 
 def buildMode = System.getProperty('BUILD_MODE')
 def versionWithQualifier
@@ -54,38 +54,14 @@ updateSiteZip.dependsOn clean
 
 platform {
     bundle "org.testng:testng:${version}", {
-        bnd {
-            // override/set the symbolic name
-            symbolicName = 'org.testng'
-            // override/set the bundle name
-            bundleName = 'testng'
-            // instruction 'Export-Package', "org.testng.*;version=$version"
-            instruction 'Import-Package', 
-                                            'com.beust.jcommander.*;version="[1.8.3,2.0.0)",' + 
-                                            'org.slf4j.*,' + 
-                                            'bsh.*;version="[2.0.0,3.0.0)";resolution:=optional,' +
-                                            'com.google.inject.*;version="5.0";resolution:=optional,' +
-                                            'junit.framework;version="[3.8.1, 5.0.0)";resolution:=optional,' +
-                                            'org.junit.*;resolution:=optional,' +
-                                            'org.apache.tools.ant.*;version="[1.7.0, 2.0.0)";resolution:=optional,' +
-                                            'org.yaml.*;version="[2.0,3.0)";resolution:=optional,' +
-                                            '!com.beust.testng,' +
-                                            '!org.testng.*,' +
-                                            '!com.sun.*'
-            instruction 'Require-Bundle', 'com.beust.jcommander;bundle-version="[1.8.3,2.0.0)";visibility:=reexport'
-            instruction 'Bundle-Vendor', 'TestNG Team'
-            version = versionWithQualifier
-        }
-        exclude module: 'ant'
+    	exclude module: 'ant'
         exclude module: 'bsh'
         exclude module: 'junit'
         exclude module: 'jsr305'
         exclude module: 'guice'
-        exclude module: 'slf4j-api'
+    	exclude module: 'slf4j-api'
     }
-
     bundle "org.yaml:snakeyaml:2.2"
-
     bundle "org.jcommander:jcommander:1.83", {
         bnd {
             // override/set the symbolic name
