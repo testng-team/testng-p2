@@ -81,16 +81,10 @@ platform {
         exclude module: 'junit'
         exclude module: 'jsr305'
         exclude module: 'guice'
+        exclude module: 'slf4j-api'
     }
 
     bundle "org.yaml:snakeyaml:2.2"
-    bundle "org.slf4j:slf4j-api:2.0.16"
-
-    bundle "org.apache-extras.beanshell:bsh:2.0b6", {
-        bnd {
-            optionalImport 'org.apache.bsf.*'
-        }
-    }
 
     bundle "org.jcommander:jcommander:1.83", {
         bnd {
